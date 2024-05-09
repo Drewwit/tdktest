@@ -26,7 +26,7 @@
 <body>
     <a-scene>
         <a-assets>
-            <img id="city" src="images/IMG_20240508_143440_996.JPG" rotation="0 -40 0">
+            <img id="city" src="images/IMG_20240508_143440_996.JPG" rotation="0 -50 0">
             <img id="cubes" src="images/IMG_20240508_143412_029.JPG">
             <img id="sechelt" src="images/IMG_20240508_143349_418.JPG">
             <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
@@ -40,17 +40,17 @@
 
         <a-entity id="welcome-panel" position="0 .5 -2">
             <a-entity id="welcome-text" geometry="primitive: plane; height: 0.5; width: 2" material="color: #0000ff" position="0 0.3 0.01" text="value: Welcome to the Virtual Tour of Prime Martial Arts West!; color: white; align: center">
-                <a-entity id="close-button" class="clickable" geometry="primitive: plane; height: 0.2; width: 0.2" material="color: white" position="0.9 0.15 0.01" text="value: X; color: black; align: center" event-set__click="_target: #welcome-panel; visible: false"></a-entity>
+                <a-entity id="close-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.15" material="color: white" position="0.95 0.25 0.01" text="value: X; color: black; align: center" event-set__click="_target: #welcome-panel; visible: false"></a-entity>
             </a-entity>
         </a-entity>
 
         <a-entity id="navigation-panel" position="0 -1 -2">
             <a-entity id="navigation-background" geometry="primitive: plane; height: 0.35; width: 2" material="color: #0000ff; transparent: true; opacity: 0.8" position="0 0 0.01"></a-entity>
-            <a-entity id="navigation-menu" layout="type: line; margin: 0.25" position="0 0 0.02">
+            <a-entity id="navigation-menu" layout="type: line; margin: 0.5" position="0 0 0.02">
                 <a-entity template="src: #link" data-src="#city" data-label="Entrance" data-title="Room 1"></a-entity>
-                <a-entity layout="margin: 0.4"></a-entity>
+                <a-entity layout="margin: 0.8"></a-entity>
                 <a-entity template="src: #link" data-src="#cubes" data-label="Sitting Area" data-title="Room 2"></a-entity>
-                <a-entity layout="margin: 0.4"></a-entity>
+                <a-entity layout="margin: 0.8"></a-entity>
                 <a-entity template="src: #link" data-src="#sechelt" data-label="Training Floor" data-title="Room 3"></a-entity>
             </a-entity>
         </a-entity>
@@ -68,6 +68,7 @@
         <a-entity id="video-player" visible="false" position="0 1.6 -2">
             <a-plane id="video-background-plane" src="#video-background" width="2" height="1.5" material="transparent: true; opacity: 0.8" position="0 0 0.01"></a-plane>
             <a-video id="video-element" src="#youtube-video" width="1.6" height="0.9" position="0 0 0.02"></a-video>
+            <a-entity id="video-close-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.15" material="color: white" position="0.8 0.45 0.03" text="value: X; color: black; align: center" event-set__click="_target: #video-player; visible: false"></a-entity>
         </a-entity>
     </a-scene>
 
@@ -111,6 +112,12 @@
         closeButton.addEventListener('click', () => {
             const welcomePanel = document.querySelector('#welcome-panel');
             welcomePanel.setAttribute('visible', false);
+        });
+
+        const videoCloseButton = document.querySelector('#video-close-button');
+        videoCloseButton.addEventListener('click', () => {
+            const videoPlayer = document.querySelector('#video-player');
+            videoPlayer.setAttribute('visible', false);
         });
     </script>
 </body>
