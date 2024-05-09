@@ -12,14 +12,14 @@
     <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.jss"></script>
     <script id="link" type="text/html">
         <a-entity class="link"
-                  geometry="primitive: plane; height: 0.5; width: 1"
+                  geometry="primitive: plane; height: 0.5; width: 1.2"
                   material="color: #800080"
                   sound="on: click; src: #click-sound"
                   event-set__mouseenter="scale: 1.2 1.2 1"
                   event-set__mouseleave="scale: 1 1 1"
                   event-set__click="_target: #image-360; _delay: 300; material.src: ${src}; _pauseVideoEvents: resumeVideo"
                   proxy-event="event: click; to: #image-360; as: fade">
-            <a-entity text="value: ${label}; color: white; align: center"></a-entity>
+            <a-entity text="value: ${label}; color: white; align: center; wrapCount: 8"></a-entity>
         </a-entity>
     </script>
 </head>
@@ -38,12 +38,12 @@
         <a-sky id="image-360" radius="10" src="#city" animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade" animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
         <a-entity geometry="primitive: ring; radiusInner: 9.9; radiusOuter: 10.1" material="color: #0000ff; side: double" position="0 0 0" scale="1 1 1"></a-entity>
 
-        <a-entity id="welcome-panel" position="0 0 -2">
+        <a-entity id="welcome-panel" position="0 .5 -2">
             <a-entity id="welcome-text" geometry="primitive: plane; height: 0.5; width: 2" material="color: #0000ff" position="0 0.3 0.01" text="value: Welcome to Prime Martial Arts Virtual Tour; color: white; align: center">
                 <a-entity id="close-button" geometry="primitive: plane; height: 0.2; width: 0.2" material="color: white" position="0.9 0.15 0.01" text="value: X; color: black; align: center" event-set__click="_target: #welcome-panel; visible: false"></a-entity>
             </a-entity>
-            <a-entity id="navigation-background" geometry="primitive: plane; height: 0.7; width: 3" material="color: #0000ff; transparent: true; opacity: 0.8" position="0 -1 0.01"></a-entity>
-            <a-entity id="navigation-menu" layout="type: line; margin: 0.2" position="0 -1 0.02">
+            <a-entity id="navigation-background" geometry="primitive: plane; height: 0.7; width: 4" material="color: #0000ff; transparent: true; opacity: 0.8" position="0 -1 0.01"></a-entity>
+            <a-entity id="navigation-menu" layout="type: line; margin: 0.5" position="0 -1 0.02">
                 <a-entity template="src: #link" data-src="#city" data-label="Entrance" data-title="Room 1"></a-entity>
                 <a-entity template="src: #link" data-src="#cubes" data-label="Sitting Area" data-title="Room 2"></a-entity>
                 <a-entity template="src: #link" data-src="#sechelt" data-label="Training Floor" data-title="Room 3"></a-entity>
@@ -93,7 +93,7 @@
         const videoElement = document.querySelector('#video-element');
 
         poiIndicators.forEach(indicator => {
-            const videoUrl = indicator.getAttribute('https://www.youtube.com/watch?v=quo1sXpURi4'); // Replace with your YouTube video URL
+            const videoUrl = indicator.getAttribute('data-video-url'); // Replace with your YouTube video URL
 
             indicator.addEventListener('click', () => {
                 videoPlayer.setAttribute('visible', true);
