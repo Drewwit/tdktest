@@ -1,57 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28" content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
-<meta charset="utf-8">
-<title>360&deg;Prime Virtual Tour</title>
-<meta name="description" content="360&deg; Prime Martial Arts Lawrence Kansas">
-
-<script src="dist/aframe-master.min.js"></script>
-<script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
-<script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
-<script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
-<script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.jss"></script>
-
-<script id="link" type="text/html">
-      <a-entity class="link"
-        geometry="primitive: plane; height: 1; width: 1"
-        material="shader: flat; src: ${thumb}"
-        sound="on: click; src: #click-sound"
-        event-set__mouseenter="scale: 1.2 1.2 1"
-        event-set__mouseleave="scale: 1 1 1"
-        event-set__click="_target: #image-360; _delay: 300; material.src: ${src}"
-        proxy-event="event: click; to: #image-360; as: fade"></a-entity>
+    <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28" content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
+    <meta charset="utf-8">
+    <title>360&deg;Prime Virtual Tour</title>
+    <meta name="description" content="360&deg; Prime Martial Arts Lawrence Kansas">
+    <script src="dist/aframe-master.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.jss"></script>
+    <script id="link" type="text/html">
+        <a-entity class="link"
+                  geometry="primitive: plane; height: 0.5; width: 0.5"
+                  material="shader: flat; src: ${thumb}"
+                  sound="on: click; src: #click-sound"
+                  event-set__mouseenter="scale: 1.2 1.2 1"
+                  event-set__mouseleave="scale: 1 1 1"
+                  event-set__click="_target: #image-360; _delay: 300; material.src: ${src}; _pauseVideoEvents: resumeVideo"
+                  proxy-event="event: click; to: #image-360; as: fade"></a-entity>
     </script>
+    <style>
+        .welcome-banner {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background: linear-gradient(to right, rgba(0, 128, 255, 0.5), rgba(0, 255, 255, 0.5));
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
+    <div class="welcome-banner">Welcome to Prime Martial Arts Virtual Tour</div>
+    <a-scene>
+        <a-assets>
+            <img id="city" src="images/IMG_20240508_143440_996.JPG">
+            <img id="city-thumb" src="images/IMG_20240508_143440_996.JPG">
+            <img id="cubes-thumb" src="images/IMG_20240508_143412_029.JPG">
+            <img id="sechelt-thumb" src="images/IMG_20240508_143349_418.JPG">
+            <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+            <img id="cubes" src="images/IMG_20240508_143412_029.JPG">
+            <img id="sechelt" src="images/IMG_20240508_143349_418.JPG">
+            <audio id="room-audio" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/room.mp3"></audio>
+            <video id="youtube-video" src="" width="640" height="360" controls crossorigin="anonymous"></video>
+            <img id="video-background" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+        </a-assets>
 
-<a-scene>
+        <a-sky id="image-360" radius="10" src="#city" animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade" animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
 
-  <a-assets>
-<img id="city" src="images/IMG_20240508_143440_996.JPG">
-<img id="city-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
-<img id="cubes-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-<img id="sechelt-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
-<audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-<img id="cubes" src="images/IMG_20240508_143412_029.JPG">
-<img id="sechelt" src="images/IMG_20240508_143349_418.JPG">
-</a-assets>
+        <a-entity id="navigation-menu" layout="type: circle; radius: 3; plane: xz" position="0 1.5 0">
+            <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb" data-title="Room 1"></a-entity>
+            <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb" data-title="Room 2"></a-entity>
+            <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb" data-title="Room 3"></a-entity>
+        </a-entity>
 
-  <a-sky id="image-360" radius="10" src="#city" animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade" animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
+        <a-entity id="gradient-background" geometry="primitive: plane; height: 5; width: 10" material="shader: flat; side: double; color: #0080ff; transparent: true; opacity: 0.5" position="0 1.5 -3"></a-entity>
 
-<a-entity id="links" layout="type: line; margin: 1.5" position="-1.5 -1 -4">
-<a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
-<a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
-<a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
-</a-entity>
+        <a-entity camera look-controls>
+            <a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500" event-set__mouseenter="_event: mouseenter; color: springgreen" event-set__mouseleave="_event: mouseleave; color: blue" raycaster="objects: .link"></a-cursor>
+        </a-entity>
 
-<a-entity camera look-controls>
+        <a-entity id="poi-indicators" position="0 1.6 0">
+            <a-entity id="poi-1" geometry="primitive: ring; radiusInner: 0.1; radiusOuter: 0.2" material="color: yellow" position="-2 0 -3" scale="0.5 0.5 0.5" visible="false" data-video-url="https://www.youtube.com/watch?v=VIDEO_ID"></a-entity>
+            <a-entity id="poi-2" geometry="primitive: ring; radiusInner: 0.1; radiusOuter: 0.2" material="color: green" position="2 0 -3" scale="0.5 0.5 0.5" visible="false" data-video-url="https://www.youtube.com/watch?v=VIDEO_ID"></a-entity>
+            <a-entity id="poi-3" geometry="primitive: ring; radiusInner: 0.1; radiusOuter: 0.2" material="color: red" position="0 0 3" scale="0.5 0.5 0.5" visible="false" data-video-url="https://www.youtube.com/watch?v=VIDEO_ID"></a-entity>
+        </a-entity>
 
-<a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500" event-set__mouseenter="_event: mouseenter; color: springgreen" event-set__mouseleave="_event: mouseleave; color: black" raycaster="objects: .link"></a-cursor>
-</a-entity>
+        <a-entity id="video-player" visible="false" position="0 1.6 -2">
+            <a-plane id="video-background-plane" src="#video-background" width="2" height="1.5" material="transparent: true; opacity: 0.8" position="0 0 0.01"></a-plane>
+            <a-video id="video-element" src="#youtube-video" width="1.6" height="0.9" position="0 0 0.02"></a-video>
+        </a-entity>
+    </a-scene>
 
-</a-scene>
+    <script>
+        const links = document.querySelectorAll('.link');
+        const sky = document.querySelector('#image-360');
+        const roomAudio = document.querySelector('#room-audio');
 
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                const src = link.getAttribute('data-src');
+                const title = link.getAttribute('data-title');
+                sky.setAttribute('src', src);
+                roomAudio.play();
+
+                // Show only the relevant POI indicators
+                const poiIndicators = document.querySelectorAll('#poi-indicators > a-entity');
+                poiIndicators.forEach(indicator => indicator.setAttribute('visible', false));
+                const selectedPoi = document.querySelector(`#poi-indicators > a-entity[data-room="${title}"]`);
+                if (selectedPoi) {
+                    selectedPoi.setAttribute('visible', true);
+                }
+            });
+        });
+
+        const poiIndicators = document.querySelectorAll('#poi-indicators > a-entity');
+        const videoPlayer = document.querySelector('#video-player');
+        const videoElement = document.querySelector('#video-element');
+
+        poiIndicators.forEach(indicator => {
+            const videoUrl = indicator.getAttribute('data-video-url'); // Replace with your YouTube video URL
+
+            indicator.addEventListener('click', () => {
+                videoPlayer.setAttribute('visible', true);
+                videoElement.setAttribute('src', videoUrl);
+                videoElement.play();
+            });
+        });
+    </script>
 </body>
 </html>
