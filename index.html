@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,23 +21,8 @@
                   event-set__click="_target: #image-360; _delay: 300; material.src: ${src}; _pauseVideoEvents: resumeVideo"
                   proxy-event="event: click; to: #image-360; as: fade"></a-entity>
     </script>
-    <style>
-        .welcome-banner {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            background: linear-gradient(to right, rgba(0, 128, 255, 0.5), rgba(0, 255, 255, 0.5));
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
-    <div class="welcome-banner">Welcome to Prime Martial Arts Virtual Tour</div>
     <a-scene>
         <a-assets>
             <img id="city" src="images/IMG_20240508_143440_996.JPG">
@@ -54,13 +40,15 @@
         <a-sky id="image-360" radius="10" src="#city" animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade" animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
         <a-entity geometry="primitive: ring; radiusInner: 9.9; radiusOuter: 10.1" material="color: #0000ff; side: double" position="0 0 0" scale="1 1 1"></a-entity>
 
-        <a-entity id="navigation-menu" layout="type: circle; radius: 4; plane: xz" position="0 1.5 -2">
-            <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb" data-title="Room 1"></a-entity>
-            <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb" data-title="Room 2"></a-entity>
-            <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb" data-title="Room 3"></a-entity>
+        <a-entity id="welcome-panel" position="0 1.6 -2">
+            <a-entity id="welcome-text" geometry="primitive: plane; height: 0.5; width: 2" material="color: #0000ff" position="0 0.3 0.01" text="value: Welcome to Prime Martial Arts Virtual Tour; color: white; align: center"></a-entity>
+            <a-entity id="navigation-background" geometry="primitive: plane; height: 0.7; width: 3" material="color: #0000ff; transparent: true; opacity: 0.8" position="0 -0.2 0.01"></a-entity>
+            <a-entity id="navigation-menu" layout="type: line; margin: 0.2" position="0 -0.2 0.02">
+                <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb" data-title="Room 1"></a-entity>
+                <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb" data-title="Room 2"></a-entity>
+                <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb" data-title="Room 3"></a-entity>
+            </a-entity>
         </a-entity>
-
-        <a-entity id="gradient-background" geometry="primitive: plane; height: 5; width: 10" material="shader: flat; side: double; color: #0080ff; transparent: true; opacity: 0.5" position="0 1.5 -3"></a-entity>
 
         <a-entity camera look-controls>
             <a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500" event-set__mouseenter="_event: mouseenter; color: springgreen" event-set__mouseleave="_event: mouseleave; color: blue" raycaster="objects: .link"></a-cursor>
