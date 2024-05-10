@@ -26,14 +26,14 @@
         .panel {
             border-radius: 10px;
             padding: 10px;
-            background-color: #0000ff;
+            background-color: blue;
         }
     </style>
 </head>
 <body>
     <a-scene>
         <a-assets>
-            <img id="city" src="images/IMG_20240508_143440_996.JPG" rotation="0 120 0">
+            <img id="city" src="images/IMG_20240508_143440_996.JPG" rotation="0 200 0">
             <img id="cubes" src="images/IMG_20240508_143412_029.JPG" rotation="0 -45 0">
             <img id="sechelt" src="images/IMG_20240508_143349_418.JPG" rotation="0 100 0">
             <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
@@ -46,8 +46,8 @@
         <a-entity geometry="primitive: ring; radiusInner: 9.9; radiusOuter: 10.1" material="color: #0000ff; side: double" position="0 0 0" scale="1 1 1"></a-entity>
 
         <a-entity id="welcome-panel" position="0 .5 -2" border-radius="10px" class="panel">
-            <a-entity id="welcome-text" geometry="primitive: plane; height: 0.5; width: 2; " material="color: white; transparent: true; opacity: 0.8" position="0 0.3 0.01" text="value: Welcome to the Virtual Tour of Prime Martial Arts West!; color: black; align: center">
-                <a-entity id="close-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.15" material="color: white" position="0.95 0.25 0.01" text="value: X; color: black; align: center" event-set__click="_target: #welcome-panel; visible: false"></a-entity>
+            <a-entity id="welcome-text" geometry="primitive: plane; height: 0.5; width: 2; " material="color: white; transparent: true; opacity: 0.8" position="0 0.3 0.01" text="value: Welcome to the Virtual Tour of Prime Martial Arts West!; color: white; align: center">
+                <a-entity id="close-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.15" material="color: purple" position="0.95 0.25 0.01" text="value: X; color: white; align: center" event-set__click="_target: #welcome-panel; visible: false"></a-entity>
             </a-entity>
         </a-entity>
 
@@ -58,7 +58,7 @@
                 <a-entity layout="margin: 0.8"></a-entity>
                 <a-entity template="src: #link" data-src="#cubes" data-label="Sitting Area" data-title="Room 2" data-rotation="0 -45 0"></a-entity>
                 <a-entity layout="margin: 0.8"></a-entity>
-                <a-entity template="src: #link" data-src="#sechelt" data-label="Training Floor" data-title="Room 3" data-rotation="0 90 0"></a-entity>
+                <a-entity template="src: #link" data-src="#sechelt" data-label="Training Floor" data-title="Room 3" data-rotation="0 100 0"></a-entity>
             </a-entity>
         </a-entity>
 
