@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28" content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
     <meta charset="utf-8">
-    <title>360&deg;Prime Virtual Tour 1.2.2</title>
+    <title>360&deg;Prime Virtual Tour 1.2.3</title>
     <meta name="description" content="360&deg; Prime Martial Arts Lawrence Kansas">
     <script src="dist/aframe-master.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
@@ -70,8 +70,8 @@
             <a-plane id="video-background-plane" src="#bg2" width="2" height="1.5" material="transparent: true; opacity: 0.8" position="0 0 0.01"></a-plane>
             <a-video id="video-element" src="" width="1.6" height="0.9" position="0 0 0.02"></a-video>
             <a-entity id="video-controls" position="0 -0.5 0.03">
-                <a-entity id="play-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.3" material="color: white" position="-0.4 0 0" text="value: Play; color: black; align: center" event-set__click="_target: #video-element; _event: play"></a-entity>
-                <a-entity id="pause-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.3" material="color: white" position="0.4 0 0" text="value: Pause; color: black; align: center" event-set__click="_target: #video-element; _event: pause"></a-entity>
+                <a-entity id="play-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.3" material="color: white" position="-0.4 0 0" text="value: Play; color: black; align: center" event-set__click="_target: #video-element; _event: play" onclick="console.log('Play button clicked')"></a-entity>
+                <a-entity id="pause-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.3" material="color: white" position="0.4 0 0" text="value: Pause; color: black; align: center" event-set__click="_target: #video-element; _event: pause" onclick="console.log('Pause button clicked')"></a-entity>
             </a-entity>
             <a-entity id="video-close-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.15" material="color: white" position="0.8 0.45 0.03" text="value: X; color: black; align: center" event-set__click="_target: #video-player; visible: false"></a-entity>
         </a-entity>
@@ -151,6 +151,9 @@
             indicator.addEventListener('click', () => {
                 videoPlayer.setAttribute('visible', true);
                 videoElement.setAttribute('src', videoUrl);
+                videoElement.addEventListener('loadedmetadata', () => {
+                    videoElement.play();
+                });
             });
         });
 
