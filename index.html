@@ -3,13 +3,13 @@
 <head>
     <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28" content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
     <meta charset="utf-8">
-    <title>360&deg;Prime Virtual Tour 1.2.1</title>
+    <title>360&deg;Prime Virtual Tour 1.2.2</title>
     <meta name="description" content="360&deg; Prime Martial Arts Lawrence Kansas">
     <script src="dist/aframe-master.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
     <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.jss"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
     <script id="link" type="text/html">
         <a-entity class="link"
                   geometry="primitive: plane; height: 0.25; width: 0.6"
@@ -27,13 +27,12 @@
 <body>
     <a-scene>
         <a-assets>
-            <img id="city" src="images/IMG_20240508_143440_996.JPG" rotation="0 180 0">
-            <img id="cubes" src="images/IMG_20240508_143412_029.JPG" rotation="0 45 0">
-            <img id="sechelt" src="images/IMG_20240508_143349_418.JPG" rotation="0 90 -10">
+            <img id="city" src="images/IMG_20240508_143440_996.JPG">
+            <img id="cubes" src="images/IMG_20240508_143412_029.JPG">
+            <img id="sechelt" src="images/IMG_20240508_143349_418.JPG">
             <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
             <audio id="room-audio" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/room.mp3"></audio>
-            <video id="youtube-video" src="https://www.youtube.com/embed/quo1sXpURi4" width="640" height="360" controls crossorigin="anonymous"></video>
-            <img id="video-background" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+            <audio id="training-room-audio" src="path/to/training-room-audio.mp3"></audio>
             <img id="bg2" src="images/bg2.png">
         </a-assets>
 
@@ -41,18 +40,19 @@
         <a-entity geometry="primitive: ring; radiusInner: 9.9; radiusOuter: 10.1" material="color: #0000ff; side: double" position="0 0 0" scale="1 1 1"></a-entity>
 
         <a-entity id="welcome-panel" position="0 .5 -2" geometry="primitive: roundedPlane; width: 2; height: 1; radius: 0.1" material="color: #0000ff; transparent: true; opacity: 0.8">
-            <a-entity id="welcome-text" geometry="primitive: plane; height: 0.5; width: 2" material="color: white" position="0 0.3 0.01" text="value: Welcome to the Virtual Tour of Prime Martial Arts West!; color: black; align: center">
-                <a-entity id="close-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.15" material="color: white" position="0.95 0.25 0.01" text="value: X; color: black; align: center" event-set__click="_target: #welcome-panel; visible: false"></a-entity>
+            <a-plane src="#bg2" width="2" height="1" position="0 0 0.01"></a-plane>
+            <a-entity id="welcome-text" geometry="primitive: plane; height: 0.5; width: 2" material="color: white" position="0 0.3 0.02" text="value: Welcome to the Virtual Tour of Prime Martial Arts West!; color: black; align: center">
+                <a-entity id="close-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.15" material="color: white" position="0.95 0.25 0.03" text="value: X; color: black; align: center" event-set__click="_target: #welcome-panel; visible: false"></a-entity>
             </a-entity>
         </a-entity>
 
         <a-entity id="navigation-panel" position="0 -1 -2" geometry="primitive: roundedPlane; width: 2; height: 0.35; radius: 0.1" material="color: #0000ff; transparent: true; opacity: 0.8">
             <a-entity id="navigation-menu" layout="type: line; margin: 0.5" position="-1 0 0.02">
-                <a-entity template="src: #link" data-src="#city" data-label="Entrance" data-title="Room 1" data-rotation="0 0 0"></a-entity>
+                <a-entity template="src: #link" data-src="#city" data-label="Entrance" data-title="Room 1" data-rotation="0 180 0"></a-entity>
                 <a-entity layout="margin: 0.8"></a-entity>
-                <a-entity template="src: #link" data-src="#cubes" data-label="Sitting Area" data-title="Room 2" data-rotation="0 -45 0"></a-entity>
+                <a-entity template="src: #link" data-src="#cubes" data-label="Sitting Area" data-title="Room 2" data-rotation="0 45 0"></a-entity>
                 <a-entity layout="margin: 0.8"></a-entity>
-                <a-entity template="src: #link" data-src="#sechelt" data-label="Training Floor" data-title="Room 3" data-rotation="0 90 0"></a-entity>
+                <a-entity template="src: #link" data-src="#sechelt" data-label="Training Floor" data-title="Room 3" data-rotation="0 90 -10"></a-entity>
             </a-entity>
         </a-entity>
 
@@ -66,9 +66,13 @@
             <a-entity id="poi-3" class="clickable" geometry="primitive: ring; radiusInner: 0.1; radiusOuter: 0.2" material="color: red" position="0 0 3" scale="0.5 0.5 0.5" visible="false" data-video-url="https://www.youtube.com/embed/quo1sXpURi4"></a-entity>
         </a-entity>
 
-        <a-entity id="video-player" visible="false" position="0 1 -2" geometry="primitive: roundedPlane; width: 2; height: 1.5; radius: 0.1" material="color: #0000ff; transparent: true; opacity: 0.8">
-            <a-plane id="video-background-plane" src="#video-background" width="2" height="1.5" material="transparent: true; opacity: 0.8" position="0 0 0.01"></a-plane>
-            <a-video id="video-element" src="#youtube-video" width="1.6" height="0.9" position="0 0 0.02"></a-video>
+        <a-entity id="video-player" visible="false" position="0 0.5 -2" geometry="primitive: roundedPlane; width: 2; height: 1.5; radius: 0.1" material="color: #0000ff; transparent: true; opacity: 0.8">
+            <a-plane id="video-background-plane" src="#bg2" width="2" height="1.5" material="transparent: true; opacity: 0.8" position="0 0 0.01"></a-plane>
+            <a-video id="video-element" src="" width="1.6" height="0.9" position="0 0 0.02"></a-video>
+            <a-entity id="video-controls" position="0 -0.5 0.03">
+                <a-entity id="play-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.3" material="color: white" position="-0.4 0 0" text="value: Play; color: black; align: center" event-set__click="_target: #video-element; _event: play"></a-entity>
+                <a-entity id="pause-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.3" material="color: white" position="0.4 0 0" text="value: Pause; color: black; align: center" event-set__click="_target: #video-element; _event: pause"></a-entity>
+            </a-entity>
             <a-entity id="video-close-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.15" material="color: white" position="0.8 0.45 0.03" text="value: X; color: black; align: center" event-set__click="_target: #video-player; visible: false"></a-entity>
         </a-entity>
     </a-scene>
@@ -111,6 +115,7 @@
         const links = document.querySelectorAll('.link');
         const sky = document.querySelector('#image-360');
         const roomAudio = document.querySelector('#room-audio');
+        const trainingRoomAudio = document.querySelector('#training-room-audio');
 
         links.forEach(link => {
             link.addEventListener('click', () => {
@@ -119,7 +124,12 @@
                 const rotation = link.getAttribute('data-rotation');
                 sky.setAttribute('src', src);
                 sky.setAttribute('rotation', rotation);
-                roomAudio.play();
+
+                if (title === 'Room 3') {
+                    trainingRoomAudio.play();
+                } else {
+                    roomAudio.play();
+                }
 
                 // Show only the relevant POI indicators
                 const poiIndicators = document.querySelectorAll('#poi-indicators > a-entity');
@@ -141,7 +151,6 @@
             indicator.addEventListener('click', () => {
                 videoPlayer.setAttribute('visible', true);
                 videoElement.setAttribute('src', videoUrl);
-                videoElement.play();
             });
         });
 
@@ -155,6 +164,7 @@
         videoCloseButton.addEventListener('click', () => {
             const videoPlayer = document.querySelector('#video-player');
             videoPlayer.setAttribute('visible', false);
+            videoElement.pause();
         });
     </script>
 </body>
