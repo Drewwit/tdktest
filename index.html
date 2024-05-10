@@ -141,7 +141,7 @@
             indicator.addEventListener('click', () => {
                 videoPlayer.setAttribute('visible', true);
                 videoElement.setAttribute('src', videoUrl);
-                videoElement.play();
+                videoElement.play(); // Added this line to autoplay the video
             });
         });
 
@@ -155,6 +155,7 @@
         videoCloseButton.addEventListener('click', () => {
             const videoPlayer = document.querySelector('#video-player');
             videoPlayer.setAttribute('visible', false);
+            videoElement.pause(); // Pause the video when closing the player
         });
     </script>
 </body>
