@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28" content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
     <meta charset="utf-8">
-    <title>360&deg;Prime Virtual Tour 1.2.6</title>
+    <title>360&deg;Prime Virtual Tour 1.2.7</title>
     <meta name="description" content="360&deg; Prime Martial Arts Lawrence Kansas">
     <script src="dist/aframe-master.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
@@ -120,16 +120,6 @@
 
         let player;
         function onYouTubeIframeAPIReady() {
-            const videoTexture = new THREE.VideoTexture(player.getIframe());
-            const youtubePlayer = document.getElementById('youtube-player');
-            youtubePlayer.setAttribute('material', 'src', '#youtube-texture');
-
-            const scene = document.querySelector('a-scene');
-            const assets = scene.querySelector('a-assets');
-            assets.appendChild(videoTexture.image);
-            videoTexture.image.setAttribute('id', 'youtube-texture');
-            videoTexture.image.setAttribute('crossorigin', 'anonymous');
-
             player = new YT.Player('youtube-player', {
                 width: '1.6',
                 height: '0.9',
@@ -190,7 +180,9 @@
 
             indicator.addEventListener('click', () => {
                 videoPlayer.setAttribute('visible', true);
-                player.loadVideoById(videoId);
+                if (player) {
+                    player.loadVideoById(videoId);
+                }
             });
         });
 
@@ -204,7 +196,9 @@
         videoCloseButton.addEventListener('click', () => {
             const videoPlayer = document.querySelector('#video-player');
             videoPlayer.setAttribute('visible', false);
-            player.stopVideo();
+            if (player) {
+                player.stopVideo();
+            }
         });
     </script>
 </body>
