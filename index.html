@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28" content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
     <meta charset="utf-8">
-    <title>360&deg;Prime Virtual Tour 1.2.4</title>
+    <title>360&deg;Prime Virtual Tour 1.2.5</title>
     <meta name="description" content="360&deg; Prime Martial Arts Lawrence Kansas">
     <script src="dist/aframe-master.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
@@ -68,7 +68,7 @@
 
         <a-entity id="video-player" visible="false" position="0 0.5 -2" geometry="primitive: roundedPlane; width: 2; height: 1.5; radius: 0.1" material="color: #0000ff; transparent: true; opacity: 0.8">
             <a-plane id="video-background-plane" src="#bg2" width="2" height="1.5" material="transparent: true; opacity: 0.8" position="0 0 0.01"></a-plane>
-            <a-entity id="youtube-player" position="0 0 0.02"></a-entity>
+            <a-entity id="youtube-player" position="0 0 0.02" material="shader: flat; src: #youtube-texture"></a-entity>
             <a-entity id="video-controls" position="0 -0.5 0.03">
                 <a-entity id="play-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.3" material="color: white" position="-0.4 0 0" text="value: Play; color: black; align: center"></a-entity>
                 <a-entity id="pause-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.3" material="color: white" position="0.4 0 0" text="value: Pause; color: black; align: center"></a-entity>
@@ -120,6 +120,16 @@
 
         let player;
         function onYouTubeIframeAPIReady() {
+            const videoTexture = new THREE.VideoTexture(player.getIframe());
+            const youtubePlayer = document.getElementById('youtube-player');
+            youtubePlayer.setAttribute('material', 'src', '#youtube-texture');
+
+            const scene = document.querySelector('a-scene');
+            const assets = scene.querySelector('a-assets');
+            assets.appendChild(videoTexture.image);
+            videoTexture.image.setAttribute('id', 'youtube-texture');
+            videoTexture.image.setAttribute('crossorigin', 'anonymous');
+
             player = new YT.Player('youtube-player', {
                 width: '1.6',
                 height: '0.9',
