@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28" content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
     <meta charset="utf-8">
-    <title>360&deg;Prime Virtual Tour 1.2.7</title>
+    <title>360&deg;Prime Virtual Tour 1.2.8</title>
     <meta name="description" content="360&deg; Prime Martial Arts Lawrence Kansas">
     <script src="dist/aframe-master.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
@@ -52,12 +52,12 @@
                 <a-entity layout="margin: 0.8"></a-entity>
                 <a-entity template="src: #link" data-src="#cubes" data-label="Sitting Area" data-title="Room 2" data-rotation="0 45 0"></a-entity>
                 <a-entity layout="margin: 0.8"></a-entity>
-                <a-entity template="src: #link" data-src="#sechelt" data-label="Training Floor" data-title="Room 3" data-rotation="0 90 -10"></a-entity>
+                <a-entity template="src: #link" data-src="#sechelt" data-label="Training Floor" data-title="Room 3" data-rotation="0 90 0"></a-entity>
             </a-entity>
         </a-entity>
 
         <a-entity camera look-controls>
-            <a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500" event-set__mouseenter="_event: mouseenter; color: springgreen" event-set__mouseleave="_event: mouseleave; color: blue" raycaster="objects: .link, .clickable"></a-cursor>
+            <a-cursor id="cursor" animation__click="property: scale; color: blue; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500" event-set__mouseenter="_event: mouseenter; color: springgreen" event-set__mouseleave="_event: mouseleave; color: blue" raycaster="objects: .link, .clickable"></a-cursor>
         </a-entity>
 
         <a-entity id="poi-indicators" position="0 1.6 0">
