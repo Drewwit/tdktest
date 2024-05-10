@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28" content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
     <meta charset="utf-8">
-    <title>360&deg;Prime Virtual Tour 1.2.5</title>
+    <title>360&deg;Prime Virtual Tour 1.2.6</title>
     <meta name="description" content="360&deg; Prime Martial Arts Lawrence Kansas">
     <script src="dist/aframe-master.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
@@ -40,7 +40,7 @@
         <a-entity geometry="primitive: ring; radiusInner: 9.9; radiusOuter: 10.1" material="color: #0000ff; side: double" position="0 0 0" scale="1 1 1"></a-entity>
 
         <a-entity id="welcome-panel" position="0 .5 -2" geometry="primitive: roundedPlane; width: 2; height: 1; radius: 0.1" material="color: #0000ff; transparent: true; opacity: 0.8">
-            <a-plane src="#bg2" width="2" height="1" position="0 0 0.01"></a-plane>
+            <!--<a-plane src="#bg2" width="2" height="1" position="0 0 0.01"></a-plane>-->
             <a-entity id="welcome-text" geometry="primitive: plane; height: 0.5; width: 2" material="color: white" position="0 0.3 0.02" text="value: Welcome to the Virtual Tour of Prime Martial Arts West!; color: black; align: center">
                 <a-entity id="close-button" class="clickable" geometry="primitive: plane; height: 0.15; width: 0.15" material="color: white" position="0.95 0.25 0.03" text="value: X; color: black; align: center" event-set__click="_target: #welcome-panel; visible: false"></a-entity>
             </a-entity>
